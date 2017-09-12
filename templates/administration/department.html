@@ -1,0 +1,62 @@
+{% extends 'administration/index.html' %}
+
+
+{% block body_page %}
+<!-- Breadcrumb-->
+          <ul class="breadcrumb bg-faded">
+            <div class="container-fluid">
+              <li class="breadcrumb-item"><a href="{% url 'administrator:add_user' %}" >Add New User</a></li>
+            </div>
+          </ul>
+
+<section class="projects no-padding-top bg-white">
+<center>
+    <br>
+
+     <h2 class="h2">List of Users</h2>
+ </center>
+
+
+
+<div class="container">
+<div class="row bg-white">
+    <div class="col-sm-1">
+
+    </div>
+    <div class="col-sm-10">
+<table style="width='80%';" class="table table-hover">
+    <thead class=""thead-inverse">
+    <tr >
+
+        <th>Department Name</th>
+        <th>Contact</th>
+        <th>Email</th>
+
+
+    </tr>
+    </thead>
+
+{% for department in department_list %}
+        <tr>
+        <div >
+            <td><a href="{% url 'administrator:dep_detail' department.id %}">{{department.name}}</a></td>
+            <td>{{department.contact}}</td>
+            <td><a href="">{{department.email}}</a></td>
+
+
+
+
+
+        </div>
+        </tr>
+{% endfor %}
+</table>
+ </center>
+</div>
+ <div class="col-sm-1">
+    </div>
+ </div>
+
+</section
+
+{% endblock %}

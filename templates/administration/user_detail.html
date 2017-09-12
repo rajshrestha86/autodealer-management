@@ -1,0 +1,145 @@
+{% extends 'administration/index.html' %}
+
+{%  block js %}
+    <script type="text/javascript">
+
+    $(function () {
+
+
+        $('.delete_btn').on('click',pop_up_delete);
+        function pop_up_delete() {
+            var delete_url = $(this).data('url');
+            $('#delete_emp_form').attr('action', delete_url);
+{#            $("#delete_conformation").load(delete_url,function () {#}
+{#                $("#delete_emp_form").show();#}
+{#            });#}
+        }
+          $(".app_edit_btn").on('click',pop_up_app);
+
+      });
+
+
+</script>
+{% endblock %}
+
+
+
+{% block body_page %}
+<!-- Breadcrumb-->
+          <ul class="breadcrumb">
+            <div class="container-fluid">
+                <li class="breadcrumb-item">Details for:<b> {{ user.user_id.first_name }}  {{ user.user_id.last_name }}</b></li>
+
+            </div>
+          </ul>
+
+<br>
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-6 bg-white">
+      <table style="width='80%';" class="table table-hover">
+
+    <tr>
+        <td>Full Name: </td>
+        <td>{{ user.user_id.first_name }}  {{ user.user_id.last_name }}</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>{{ user.user_id.Gender }}</td>
+    </tr>
+
+
+    <tr>
+        <td>Address</td>
+        <td>{{ user.user_id.address_city }}, {{ user.user_id.address_district }}</td>
+    </tr>
+    <tr>
+        <td>Contact Number</td>
+        <td>{{ user.user_id.contact }}</td>
+    </tr>
+
+    <tr>
+        <td>user Department</td>
+        <td><b>{{ user.user_id.department_id.name }}</b></td>
+    </tr>
+    <tr>
+        <td>Joined Date</td>
+        <td>{{ user.user_id.joined_date }}</td>
+    </tr>
+    <tr>
+        <td>Salary</td>
+        <td>{{ user.user_id.salary }}</td>
+    </tr>
+          <tr>
+        <td>Username: </td>
+        <td>{{ user.username}}</td>
+    </tr>
+          <tr>
+        <td>Password: </td>
+        <td>{{ user.password }}</td>
+    </tr>
+
+</table>
+
+        <div class="row bg-white">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-6">
+
+                <a  class="btn btn-primary"  href="{% url 'administrator:user_update' user.user_id.id %}">Edit</button></a>
+            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#confirmModal" data-url="">Delete</button>
+                <br>
+                <br>
+            </div>
+
+</div>
+
+    </div>
+</div>
+
+
+
+
+
+    <!--____________________________________________-->
+
+
+
+
+<div id="confirmModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirm Deletion</h4>
+      </div>
+        <form id="delete_emp_form" action="{% url 'administrator:user_delete' user.user_id.id %}" method="post"  >
+      <div class="modal-body">
+    {% csrf_token %}
+    <div id="delete_conformation">
+
+    </div>
+    <p>Are you sure  want to delete ?</p>
+
+      </div>
+      <div class="modal-footer">
+    <input type="submit" value="Confirm" class="btn btn-danger"/>
+      </div>
+            </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+{% endblock %}

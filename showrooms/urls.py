@@ -1,0 +1,28 @@
+from django.conf.urls import url, url
+from . import views
+from vehicle_models.views import AddManufacturer
+
+app_name='showrooms'
+
+urlpatterns=[
+
+
+    url(r'^add_model/', AddManufacturer.as_view(), name='add_model'),
+    url(r'^newSale/', views.NewSaleView.as_view(), name='newSale'),
+    url(r'^processSale/', views.processSale, name='processSale'),
+    url(r'^salesList/', views.ListSalesView.as_view(), name='salesList'),
+    url(r'^report', views.salesNumber, name='report'),
+    url(r'^reportSales', views.modelSales, name='reportSales'),
+    url(r'^$', views.ManufacturerListView.as_view(), name='manufacturerLists'),
+    url(r'^manufacturer/category/(?P<pk>\d+)/$', views.CategoryListView.as_view(), name='categoryList'),
+    url(r'^manufacturer/category/vehicleName/(?P<pk>\d+)/$', views.VehicleNameListView.as_view(), name='vehicleNameList'),
+    url(r'^manufacturer/category/vehicleName/models/(?P<pk>\d+)/$', views.ModelListView.as_view(), name='modelList'),
+    url(r'^modelDetails/(?P<pk>\d+)/$', views.ModelDetailsView.as_view(), name='modelDetail'),
+    url(r'^vehicleName/models/details/(?P<pk>\d+)/$', views.ModelDetailsView.as_view(), name='modelDetails'),
+
+
+
+
+
+]
+

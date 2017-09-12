@@ -1,0 +1,188 @@
+{% extends 'employee_base.html' %}
+{%  block javascript %}
+    <script type="text/javascript">
+
+    $(function () {
+
+
+
+        $('.edit_btn').on('click',pop_up);
+        function pop_up() {
+            var update_url = $(this).data('url');
+            $("#my_form").load(update_url,function () {
+                 $("#btn_stock_update1").show();
+            });
+        }
+
+        $('.delete_btn').on('click',pop_up_delete);
+        function pop_up_delete() {
+            var delete_url = $(this).data('url');
+
+{#            $("#delete_conformation").load(function () {#}
+{#                $("#delete_emp_form").show();#}
+{#            });#}
+        }
+
+
+      });
+
+
+</script>
+{% endblock %}
+
+
+
+{% block body %}
+
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-6">
+      <table style="width='80%';" class="table table-hover">
+
+    <tr>
+        <td>Full Name: </td>
+        <td>{{ employee.first_name }}  {{ employee.last_name }}</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>{{ employee.Gender }}</td>
+    </tr>
+
+
+    <tr>
+        <td>Address</td>
+        <td>{{ employee.address_city }}, {{ employee.address_district }}</td>
+    </tr>
+    <tr>
+        <td>Contact Number</td>
+        <td>{{ employee.contact }}</td>
+    </tr>
+
+    <tr>
+        <td>Employee Department</td>
+        <td><b>{{ employee.department_id.name }}</b></td>
+    </tr>
+    <tr>
+        <td>Joined Date</td>
+        <td>{{ employee.joined_date }}</td>
+    </tr>
+    <tr>
+        <td>Salary</td>
+        <td>{{ employee.salary }}</td>
+    </tr>
+
+</table>
+        <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+
+            <button type="button" class="btn btn-primary edit_btn" id="edit_btn"  data-toggle="modal" data-target="#update_form_modal"  data-url="{% url 'main:employee_update' employee.id %}">Edit</button>
+            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#confirmModal" data-url="">Delete</button>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--<form method="post" action="{% url 'main:employee_delete' employee.id %}" >-->
+      <!--{% csrf_token %}-->
+      <!--<input type="submit" value="Confirm Delete Employee" class="btn btn-danger"/>-->
+<!--</form>-->
+
+<td></td>
+
+
+<div class="modal fade" id="update_form_modal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Employee</h4>
+        </div>
+      <form id="update_form" action="{% url 'main:employee_update' employee.id %}" method="post" >
+        <div class="modal-body">
+          <div>
+
+        {% csrf_token %}
+        <div id="my_form">
+
+                          {% include 'employee_add.html' %}
+
+
+
+        </div>
+        <br>
+        <div class="modal-footer">
+              <input type="submit" value="Submit" id="btn_stock_update1" style="display: none;" class="btn btn-primary">
+
+
+            </div>
+            </div>
+        </div>
+      </form>
+      </div>
+
+    </div>
+  </div>
+
+
+<div id="confirmModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirm Deletion</h4>
+      </div>
+        <form id="delete_emp_form" action="{% url 'main:employee_delete' employee.id %}" method="post"  >
+      <div class="modal-body">
+    {% csrf_token %}
+    <div id="delete_conformation">
+    {% include 'part_stock_confirm_delete.html' %}
+    </div>
+    <p>Are you sure  want to delete ?</p>
+
+      </div>
+      <div class="modal-footer">
+    <input type="submit" value="Confirm" class="btn btn-danger"/>
+      </div>
+            </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+

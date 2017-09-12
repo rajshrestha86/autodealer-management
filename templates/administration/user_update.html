@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+
+<table style="width='80%';" class="table table-hover">
+     <form method="post">
+         {% csrf_token %}
+           {{ form.as_table }}
+
+
+     <input type="submit" value="Save" class="btn btn-primary"/>
+         </form>
+  </table>

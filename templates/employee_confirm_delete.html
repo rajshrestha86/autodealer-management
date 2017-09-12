@@ -1,0 +1,7 @@
+<p>Are you sure  want to delete ?</p>
+<form id="delete_emp_form" action="{%url 'main:employee_delete' employee.id} " method="post"  >
+            {% csrf_token %}
+      <div class="modal-footer">
+
+    <input type="submit" value="Confirm" class="btn btn-danger"/>
+      </div>

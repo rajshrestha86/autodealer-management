@@ -1,0 +1,46 @@
+ {% extends 'employee_base.html' %}
+ {% block body %}
+ <center>
+     <h2 class="h2">Add New Employee</h2>
+ </center>
+
+<br>
+
+ <div class="container">
+<div class="row">
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-6">
+  <table style="width='80%';" class="table table-hover">
+     <form method="post" class="form-group">
+         {% csrf_token %}
+           {{ form.as_table }}
+         <tr>
+             <td></td>
+             <td></td>
+         </tr>
+
+  </table>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+</div>
+
+
+     <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+            <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+
+
+        </div>
+     </form>
+ {% endblock %}

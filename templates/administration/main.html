@@ -1,0 +1,137 @@
+{% extends 'administration/index.html' %}
+{%block js %}
+<script>
+
+week_label={{week_label|safe}};
+week_sales={{week_sales|safe}};
+month_label={{month_label|safe}};
+month_data={{month_data|safe}}
+year_parts={{parts_year_data|safe}}
+</script>
+{%endblock%}
+
+{% block body_page %}
+<!-- Dashboard Counts Section-->
+
+           <div class="col-xl-3 col-sm-6">
+           <div class="row bg-white has-shadow">
+            <strong>Today's Stats</strong>
+           </div>
+           </div>
+
+
+
+          <section class="dashboard-counts no-padding-bottom">
+            <div class="container-fluid">
+              <div class="row bg-white has-shadow">
+
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-violet"><i class="icon-user"></i></div>
+                    <div class="title"><span>Vehicles<br>Sold</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>{{sales_count}}</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="icon-padnote"></i></div>
+                    <div class="title"><span>New<br>Stocks</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>{{sales_count}}</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-green"><i class="icon-bill"></i></div>
+                    <div class="title"><span>Parts<br>Sold</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>{{parts_count}}</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-orange"><i class="icon-check"></i></div>
+                    <div class="title"><span>Workshop<br>Customers</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>{{workshop_count}}</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Dashboard Header Section    -->
+          <br>
+<br>
+           <div class="col-xl-12 col-sm-12">
+           <div class="row bg-white has-shadow">
+            <strong>Annual Report</strong>
+           </div>
+           </div>
+          <section class="dashboard-header">
+            <div class="container-fluid">
+              <div class="row">
+                <!-- Statistics -->
+                <div class="statistics col-lg-3 col-12">
+                  <div class="statistic d-flex align-items-center bg-white has-shadow">
+                    <div class="icon bg-red"><i class="fa fa-tasks"></i></div>
+                    <div class="text"><strong>{{parts_month}}</strong><br><small>Parts Out For Current Month</small></div>
+                  </div>
+                  <div class="statistic d-flex align-items-center bg-white has-shadow">
+                    <div class="icon bg-green"><i class="fa fa-calendar-o"></i></div>
+                    <div class="text"><strong>{{works_month}}</strong><br><small>Workshop Monthly Jobs</small></div>
+                  </div>
+
+                </div>
+                <!-- Line Chart            -->
+
+
+                <div class="chart col-lg-6 col-12">
+                  <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
+
+                    <canvas id="lineCahrt"></canvas>
+
+                  </div>
+                </div>
+                <div class="chart col-lg-3 col-12">
+                  <!-- Bar Chart   -->
+                  <div class="bar-chart has-shadow bg-white">
+                    <div class="title"><strong class="text-violet">Sales</strong><br><small>This Week Sales</small></div>
+                    <canvas id="barChartHome"></canvas>
+                  </div>
+                  <!-- Numbers-->
+                  <div class="statistic d-flex align-items-center bg-white has-shadow">
+                    <div class="icon bg-green"><i class="fa fa-line-chart"></i></div>
+                    <div class="text"><strong>Vehicles Sold This Week</strong><br><small></small></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Projects Section-->
+          <section class="projects no-padding-top">
+            <div class="container-fluid">
+              <!-- Project-->
+
+              <!-- Project-->
+            </div>
+          </section>
+          <!-- Client Section-->
+{% endblock %}

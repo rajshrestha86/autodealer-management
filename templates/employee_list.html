@@ -1,0 +1,152 @@
+ {% extends 'employee_base.html' %}
+
+ {%  block javascript %}
+    <script type="text/javascript">
+
+    $(function () {
+
+        $('.edit_btn').on('click',pop_up);
+        function pop_up() {
+            var update_url = $(this).data('url');
+            $('#update_form').attr('action',update_url);
+            $("#my_form").load(update_url,function () {
+                 $("#btn_stock_update2").show();
+            });
+        }
+
+        $('.delete_btn').on('click',pop_up_delete);
+        function pop_up_delete() {
+            var delete_url = $(this).data('url');
+            $('#delete_emp_form').attr('action', delete_url);
+{#            $("#delete_conformation").load(delete_url,function () {#}
+{#                $("#delete_emp_form").show();#}
+{#            });#}
+        }
+          $(".app_edit_btn").on('click',pop_up_app);
+
+      });
+
+
+</script>
+{% endblock %}
+
+
+
+
+{% block body %}
+ <center>
+     <h1 class="h1">List of Employees</h1>
+ </center>
+
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-sm-1">
+
+    </div>
+    <div class="col-sm-10">
+<table style="width='80%';" class="table table-hover">
+    <thead class=""thead-inverse">
+    <tr >
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Department</th>
+        <th>Joined Date</th>
+        <th>Edit</th>
+
+    </tr>
+    </thead>
+
+{% for employee in employee_list %}
+        <tr>
+        <div >
+            <td>{{employee.id}}</td>
+            <td><a href="{% url 'main:employee_detail' employee.id %}">{{ employee}}</a></td>
+            <td>{{employee.department_id.name}}</td>
+            <td>{{employee.joined_date}}</td>
+            <td><button type="button" class="edit_btn btn btn-primary"  data-toggle="modal" data-target="#update_form_modal"  data-url="{% url 'main:employee_update' employee.id %}">Edit</button></td>
+            <!--<td><a href="{% url 'main:employee_delete' employee.id %}" data-toggle="modal" data-target="#confirmModal" data-url="{%url 'main:employee_delete' employee.id" >Delete</a></td>-->
+
+
+        </div>
+        </tr>
+{% endfor %}
+</table>
+ </center>
+</div>
+ <div class="col-sm-1">
+    </div>
+ </div>
+
+ <!--Add and Deletion Modal-->
+
+<div class="modal fade" id="update_form_modal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Employee</h4>
+        </div>
+      <form id="update_form" action="" method="post" >
+        <div class="modal-body">
+          <div>
+
+        {% csrf_token %}
+        <div id="my_form">
+
+                {% include 'employee_add.html' %}
+
+
+
+        </div>
+        <br>
+        <div class="modal-footer">
+            <input type="submit" id="btn_stock_update2" style="display: none;" class="btn btn-primary">
+            </div>
+            </div>
+        </div>
+      </form>
+      </div>
+
+    </div>
+  </div>
+
+
+
+<div id="confirmModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirm Deletion</h4>
+      </div>
+
+      <div class="modal-body">
+
+    <div id="delete_conformation">
+    {% include 'employee_confirm_delete.html' %}
+    </div>
+
+      </div>
+
+
+            </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

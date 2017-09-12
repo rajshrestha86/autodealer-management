@@ -1,0 +1,30 @@
+{% extends 'administration/index.html' %}
+
+{% block body_page %}
+
+   <table style="width='80%';" class="table table-hover">
+     <form method="post">
+         {% csrf_token %}
+           {{ form.as_table }}
+
+        </table>
+<div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-4">
+
+               <input type="submit" id="update" class="btn btn-primary">
+</form>
+                <br>
+                <br>
+            </div>
+</div>
+
+
+
+
+{%endblock%}

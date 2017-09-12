@@ -1,0 +1,11 @@
+
+ {% block body %}
+  <table style="width='80%';" class="table table-hover">
+     <form method="post">
+         {% csrf_token %}
+
+           {{ form.as_table }}
+
+     </form>
+  </table>
+ {% endblock %}
